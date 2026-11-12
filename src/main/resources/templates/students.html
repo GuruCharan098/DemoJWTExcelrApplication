@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Students</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/style.css}">
+</head>
+
+<body class="dashboard-body">
+
+<div class="layout">
+
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+            <div class="brand-icon">S</div>
+            <span>Student Portal</span>
+        </div>
+
+        <nav>
+            <a th:href="@{/dashboard}"
+               class="nav-link">
+                Dashboard
+            </a>
+
+            <a th:href="@{/students}"
+               class="nav-link active">
+                Students
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+
+            <form th:action="@{/logout}"
+                  method="post">
+
+                <button class="logout-button"
+                        type="submit">
+                    Logout
+                </button>
+
+            </form>
+
+        </div>
+
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+                <h2>Students</h2>
+
+                <p>
+                    Manage student information and records.
+                </p>
+            </div>
+
+            <a th:href="@{/students/new}"
+               class="btn-primary">
+                + Add Student
+            </a>
+
+        </header>
+
+        <section class="content-card">
+
+            <div class="table-header">
+
+                <h2>Student Records</h2>
+
+                <span class="badge">
+                    Total:
+                    <span th:text="${students.size()}">
+                        0
+                    </span>
+                </span>
+
+            </div>
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Course</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+
+                    <tr th:each="student : ${students}">
+
+                        <td th:text="${student.id}">
+                            1
+                        </td>
+
+                        <td th:text="${student.name}">
+                            John
+                        </td>
+
+                        <td th:text="${student.email}">
+                            john@example.com
+                        </td>
+
+                        <td>
+                            <span class="course-badge"
+                                  th:text="${student.course}">
+                                Java
+                            </span>
+                        </td>
+
+                        <td class="actions">
+
+                            <a th:href="@{/students/edit/{id}(id=${student.id})}"
+                               class="btn-edit">
+                                Edit
+                            </a>
+
+                            <form th:action="@{/students/delete/{id}(id=${student.id})}"
+                                  method="post">
+
+                                <button type="submit"
+                                        class="btn-delete">
+                                    Delete
+                                </button>
+
+                            </form>
+
+                        </td>
+
+                    </tr>
+
+                    <tr th:if="${students.isEmpty()}">
+
+                        <td colspan="5"
+                            class="empty-message">
+
+                            No students found.
+                            Add your first student.
+
+                        </td>
+
+                    </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+</html>

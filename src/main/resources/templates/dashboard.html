@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Student Dashboard</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/style.css}">
+</head>
+
+<body class="dashboard-body">
+
+<div class="layout">
+
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+            <div class="brand-icon">S</div>
+
+            <span>Student Portal</span>
+        </div>
+
+        <nav>
+
+            <a th:href="@{/dashboard}"
+               class="nav-link active">
+                Dashboard
+            </a>
+
+            <a th:href="@{/students}"
+               class="nav-link">
+                Students
+            </a>
+
+        </nav>
+
+        <div class="sidebar-footer">
+
+            <form th:action="@{/logout}"
+                  method="post">
+
+                <button type="submit"
+                        class="logout-button">
+                    Logout
+                </button>
+
+            </form>
+
+        </div>
+
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+                <h2>Dashboard</h2>
+
+                <p>
+                    Welcome to your student management portal.
+                </p>
+            </div>
+
+            <div class="profile">
+                <div class="avatar">S</div>
+                <span>Student Portal</span>
+            </div>
+
+        </header>
+
+        <section class="welcome-banner">
+
+            <div>
+                <h1>Welcome Back!</h1>
+
+                <p>
+                    Manage your students and academic records
+                    from one place.
+                </p>
+            </div>
+
+            <a th:href="@{/students}"
+               class="btn-primary">
+                View Students
+            </a>
+
+        </section>
+
+        <section class="stats-grid">
+
+            <div class="stat-card">
+
+                <div class="stat-icon blue">
+                    ST
+                </div>
+
+                <div>
+                    <p>Total Students</p>
+
+                    <h2 th:text="${totalStudents}">
+                        0
+                    </h2>
+                </div>
+
+            </div>
+
+            <div class="stat-card">
+
+                <div class="stat-icon green">
+                    DB
+                </div>
+
+                <div>
+                    <p>Database</p>
+
+                    <h2>MySQL</h2>
+                </div>
+
+            </div>
+
+            <div class="stat-card">
+
+                <div class="stat-icon purple">
+                    JWT
+                </div>
+
+                <div>
+                    <p>Authentication</p>
+
+                    <h2>Secure</h2>
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="content-card">
+
+            <h2>Quick Actions</h2>
+
+            <div class="quick-actions">
+
+                <a th:href="@{/students}"
+                   class="action-card">
+
+                    <h3>Manage Students</h3>
+
+                    <p>
+                        View and manage all student records.
+                    </p>
+
+                </a>
+
+                <a th:href="@{/students/new}"
+                   class="action-card">
+
+                    <h3>Add Student</h3>
+
+                    <p>
+                        Create a new student record.
+                    </p>
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+</html>
